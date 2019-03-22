@@ -35,6 +35,9 @@ class EmojiTableTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44.0
 
         // Uncomment the following line to preserve selection between presentations
 //         self.clearsSelectionOnViewWillAppear = false
@@ -147,8 +150,34 @@ class EmojiTableTableViewController: UITableViewController {
             
         }
         
-        // Pass the selected object to the new view controller.
+      
     }
    
+    @IBAction func unwindToEmojiTableView(segue: UIStoryboardSegue)
+    {
+        guard segue.identifier == "saveUnwindSegue" else { return }
+        let sourceViewController = segue.source as!
+        AddEditEmojiTableViewController
+        if let emoji = sourceViewController.emoji {
+            if let selectedIndexPath =
+                tableView.indexPathForSelectedRow {
+                emojis[selectedIndexPath.row] = emoji
+                tableView.reloadRows(at: [selectedIndexPath],
+                                     with: .none)
+            } else {
+                let newIndexPath = IndexPath(row: emojis.count,
+                                             section: 0)
+                emojis.append(emoji)
+                tableView.insertRows(at: [newIndexPath],
+                                     with: .automatic)
+            }
+        }
+    }
+    
+    
+    
+    
+    }
+   
+    
 
-}

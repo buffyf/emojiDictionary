@@ -37,13 +37,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wEZ-73-AQj">
                                                     <rect key="frame" x="27" y="0.0" width="316" height="22"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cF-6u-ixe">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2cF-6u-ixe">
                                                             <rect key="frame" x="0.0" y="0.0" width="316" height="11"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-JH-ISJ">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-JH-ISJ">
                                                             <rect key="frame" x="0.0" y="11" width="316" height="11"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -114,6 +114,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="P00-sm-Kv4" eventType="editingDidEnd" id="pBX-I4-uLV"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -140,6 +143,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="P00-sm-Kv4" eventType="editingDidEnd" id="GZH-ip-GnU"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -166,6 +172,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="P00-sm-Kv4" eventType="editingDidEnd" id="j09-RB-BSu"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -192,6 +201,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="textEditingChanged:" destination="P00-sm-Kv4" eventType="editingDidEnd" id="rSM-bJ-2l1"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -210,15 +222,28 @@
                             <outlet property="delegate" destination="P00-sm-Kv4" id="ApP-ya-VTG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="7VB-PV-lgO"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="7VB-PV-lgO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="qfy-yK-5HL">
+                            <connections>
+                                <segue destination="6Bp-9S-Ff8" kind="unwind" identifier="cancelUnwindSegue" unwindAction="unwindToEmojiTableViewWithSegue:" id="dyC-lC-Cvu"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Kq0-Tw-mlO">
+                            <connections>
+                                <segue destination="6Bp-9S-Ff8" kind="unwind" identifier="saveUnwindSegue" unwindAction="unwindToEmojiTableViewWithSegue:" id="BNV-Nc-b2n"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextField" destination="ps7-nq-cdr" id="uvZ-Zf-87O"/>
                         <outlet property="nameTextField" destination="U7O-Rv-luu" id="oTd-Er-3CH"/>
+                        <outlet property="saveButton" destination="Kq0-Tw-mlO" id="njc-sb-7Au"/>
                         <outlet property="symbolTextField" destination="x0N-Ke-QoQ" id="RMI-7N-z7Q"/>
                         <outlet property="usageTextField" destination="74b-Pd-MMl" id="2yo-mx-hZf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rf3-kd-tuC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6Bp-9S-Ff8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1889" y="-18"/>
         </scene>
